@@ -1,0 +1,30 @@
+# Publishing your flakes to FlakeHub
+
+You can publish your flakes to FlakeHub using the [`flakehub-push`][action] GitHub Action.
+
+We recommend using FlakeHub's [flake publishing wizard][wizard] as a quickstart.
+
+## Suggestions for your flake's README
+
+While it's totally up to you what you put in your README...
+
+````markdown
+# Use as a flake
+
+[![FlakeHub](https://img.shields.io/endpoint?url=https://flakehub.com/f/YourOrgName/YourFlakeName/badge)](https://flakehub.com/flake/YourOrgName/YourFlakeName)
+
+Add YourFlakeName to your `flake.nix`:
+
+```nix
+{
+  inputs.YourFlakeName.url = "https://flakehub.com/f/YourOrgName/YourFlakeName/*.tar.gz";
+
+  outputs = { self, YourFlakeName }: {
+    # Use in your outputs
+  };
+}
+```
+````
+
+[action]: https://github.com/DeterminateSystems/flakehub-push
+[wizard]: /new
