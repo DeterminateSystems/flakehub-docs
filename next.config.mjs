@@ -1,15 +1,16 @@
 import nextra from "nextra";
 
 const withNextra = nextra({
-  theme: "nextra-theme-docs",
+  codeHighlight: true,
   defaultShowCopyCode: true,
+  theme: "nextra-theme-docs",
   themeConfig: "./theme.config.tsx",
 });
 
 export default withNextra({
-  reactStrictMode: true,
-  output: "export",
   images: {
     unoptimized: true,
   },
+  output: "export",
+  reactStrictMode: true,
 });
