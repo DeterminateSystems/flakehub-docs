@@ -3,3 +3,43 @@ title: FAQ
 ---
 
 # Frequently asked questions
+
+## How can I update Nix to use FlakeHub?
+
+We at [Determinate Systems][detsys] recommend using Nix **2.18.1** or newer in conjunction with FlakeHub.
+
+You can upgrade Nix using the [`upgrade-nix`][upgrade-nix] command. To upgrade to Nix 2.18.1:
+
+```shell
+sudo nix upgrade-nix \
+  --nix-store-paths-url https://releases.nixos.org/nix/nix-2.18.1/fallback-paths.nix
+```
+
+Note that `sudo` is necessary.
+
+Some older versions are supported, too.
+FlakeHub depends on relatively recent features of Nix.
+These versions of Nix are supported:
+
+* Nix **2.13.5** and above
+* Nix **2.15.2** and above
+* Nix **2.17** and above
+
+Note that Nix 2.14 and Nix 2.16 are *not* supported.
+
+If you're on NixOS, updating to a recent release of NixOS should update Nix automatically.
+
+If you want a transient shell environment with Nix 2.18.1:
+
+```shell
+nix shell "github:NixOS/nix/2.18.1"
+```
+
+Or using FlakeHub:
+
+```shell
+nix shell "https://flakehub.com/f/NixOS/nix/2.18.1.tar.gz"
+```
+
+[detsys]: https://determinate.systems
+[upgrade-nix]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-upgrade-nix.html
