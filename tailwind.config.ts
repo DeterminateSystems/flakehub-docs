@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 export default {
   content: ["./components/**/*.tsx"],
@@ -25,8 +25,8 @@ export default {
         "mastodon-purple": "rgb(86, 58, 204)",
         // Misc
         "rss-orange": "#f99000",
-      }
+      },
     },
   },
   plugins: [],
-} satisfies Config
+} satisfies Config;

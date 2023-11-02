@@ -5,7 +5,7 @@ const config: DocsThemeConfig = {
   logo: <span>FlakeHub</span>,
   components: {
     FlakeHubButton: FlakeHubButton,
-  }
+  },
 };
 
 export default config;
