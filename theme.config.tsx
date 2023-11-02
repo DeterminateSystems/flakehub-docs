@@ -1,10 +1,10 @@
-import Hello from "@components/Hello";
+import FlakeHubButton from "@components/FlakeHubButton";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
   logo: <span>FlakeHub</span>,
   components: {
-    Hello: Hello,
+    FlakeHubButton: FlakeHubButton,
   }
 };
 
