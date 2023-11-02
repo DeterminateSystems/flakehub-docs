@@ -2,13 +2,13 @@ import Link from "next/link";
 
 const FlakeHubButton = () => {
   return (
-    <div className="my-4">
+    <div className="my-4 md:my-5 lg:my-6">
       <Link href="https://flakehub.com" target="_blank">
-        <div className="rounded-xl border border-gray-200 px-6 py-4 shadow-sm transition-colors duration-200 hover:border-ds-magenta hover:bg-neutral-50 dark:border-gray-700 hover:dark:bg-gray-900">
+        <div className="rounded-xl border border-gray-200 px-6 py-4 shadow-sm transition-colors duration-200 hover:border-ds-magenta hover:bg-neutral-50 dark:border-gray-700 dark:hover:border-ds-magenta hover:dark:bg-gray-900">
           <div className="flex items-center gap-6">
             <span>
               <svg
-                className="h-6 w-auto"
+                className="h-4 w-auto md:h-5 lg:h-6"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlSpace="preserver"
                 enableBackground="new 0 0 5000 4330.17"
@@ -108,9 +108,9 @@ const FlakeHubButton = () => {
               </svg>
             </span>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
               <span className="text-xl font-medium">FlakeHub</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 A platform for discovering and publishing Nix flakes
               </p>
             </div>

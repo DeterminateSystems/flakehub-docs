@@ -1,1 +1,44 @@
 # How FlakeHub URLs work
+
+Here's the structure of FlakeHub URLs:
+
+<UrlStructure />
+
+<ExampleUrls
+  examples={[
+    { org: "ryantm", repo: "agenix", version: "0.13" },
+    { org: "NixOS", repo: "nixpkgs", version: "*" },
+    { org: "NixOS", repo: "nixpkgs", version: "~0.2305" },
+    { org: "NixOS", repo: "nix", version: "=2.17.0" },
+  ]}
+/>
+
+The `version-range` field defines the boundaries of versions you want.
+The range is not an exact version number, and allows SemVer compatible upgrades.
+
+FlakeHub's version solver behaves like Cargo's version solver.
+In short, here are some example version ranges and how they're interpreted:
+
+* **1.0.1** will always be at least 1.0.1, and will never upgrade to 2.0.0.
+* **0.1.1** will get at least 0.1.1 but will never upgrade to 0.2.0.
+
+FlakeHub also offers a few comparison operators, which generally shouldn't be necessary.
+
+## Tilde operator (~)
+
+The tilde reduces the maximum version boundary when specifying the major and minor versions.
+For example, ~1.0 upgrades to any version between 1.0 and 1.1 but not to 1.1.
+
+## Wildcard operator (*)
+
+The wildcard allows for any version in that position.
+
+* The version range * will always use the highest published version.
+* 1.2.* will allow any version with the major and minor version 1.2.
+
+## Equals operator (=)
+
+The equals operator allows users to specify exactly one version with no room to update.
+
+    =1.0 will always get version 1.0.
+

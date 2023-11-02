@@ -4,6 +4,25 @@ title: FlakeHub CLI
 
 # `fh`: the FlakeHub CLI
 
+[FlakeHub] has a dedicated CLI called [`fh`][fh] that you can use to interact with FlakeHub.
+To run the CLI:
+
 ```shell
 nix run "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz"
 ```
+
+`fh` enables you to do a variety of things:
+
+Command | What it does | Example
+:-------|:-------------|:-------
+`add` | Adds a flake input to a `flake.nix` file | `fh add ublue-os/fleek`
+`completion` | Provides auto-completion scripts for a variety of common shells | `fh completion bash`
+`init` | Creates a new `flake.nix` file for you using a combination of the contents of your project and your user input | `fh init`
+`list flakes` | Lists all public flakes on FlakeHub	| `fh list flakes`
+`list orgs` | Lists all public organizations on FlakeHub | `fh list orgs`
+`list releases` | Lists all public releases for a flake | `fh list releases DeterminateSystems/nuenv`
+`list versions` | Lists all public releases for a flake that match the provided version requirement | `fh list versions NixOS/nixpkgs "0.2305.*"`
+`search` | Lists all flakes that match the provided search query | `fh search "home manager"`
+
+[fh]: https://flakehub.com/flake/DeterminateSystems/fh
+[flakehub]: https://flakehub.com

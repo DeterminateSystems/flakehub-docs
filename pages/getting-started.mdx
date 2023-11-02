@@ -3,3 +3,33 @@ title: Getting started
 ---
 
 # Getting started with FlakeHub
+
+## Install Nix
+
+Use the [Determinate Nix Installer][dni] for a rock solid and fast experience:
+
+```shell
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+We also have a GitHub action:
+
+```yaml
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  nix-build:
+    name: Build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Run `nix build`
+        run: nix build .
+```
+
+[dni]: TODO

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./components/**/*.tsx"],
+  content: ["./components/**/*.tsx", "./theme/config.tsx"],
   darkMode: "class",
   theme: {
     extend: {

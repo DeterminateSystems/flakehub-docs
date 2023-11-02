@@ -41,5 +41,87 @@ Or using FlakeHub:
 nix shell "https://flakehub.com/f/NixOS/nix/2.18.1.tar.gz"
 ```
 
+## Don't flakes follow versions already?
+
+Flake inputs provide two option, and neither is equivalent to FlakeHub.
+
+Flakes can refer to a Git tag.
+The [`github:ryantm/agenix/0.13.0`][agenix] uses the `0.13.0` tag of the `agenix` project.
+Your project will always use exactly that version and updating your `flake.lock` won't change that.
+The benefit is that 0.13.0 is identifiable and predictable.
+But there's a problem: your project will be stuck on 0.13.0 until you change it by hand, even if `agenix` 0.13.1 is released with important updates and is fully compatible.
+
+Flakes can also point to a Git branch.
+[Fenix], for example, is a nice tool for packaging [Rust] toolchains in Nix.
+Its GitHub flake reference is `github:nix-community/fenix`, which points to the main branch of Fenix.
+
+When you lock your dependencies, your project will use whatever version was committed to main at the moment you updated. Whether or not it was ready for users, or in the middle of a major refactor. This poses a few of questions:
+
+1. Are the changes on the main API compatible or will I need to change my Nix expressions?
+1. Has this commit been tested against my architecture and my use case?
+1. As a publisher of flakes, how can I change my API without making my users unhappy?
+1. As a publisher, should I recommend users to get stuck on a version or follow the ups and downs of a development branch?
+
+FlakeHub introduces [semantic versioning][semver] (SemVer) to the Nix world to help users stay up to date and to reduce the support burden on flake publishers.
+
+## What is SemVer, semantic versioning?
+
+FlakeHub enables you to use a subset of Semantic Versioning (SemVer) with your Nix flakes.
+The diagram below provides a quick refresher on the structure of versions in SemVer:
+
+<SemVer major="major" minor="minor" patch="patch" explainer />
+
+- <span className="text-pink-600 dark:text-pink-400">Major</span> versions represent
+  backwards-incompatible **API changes**.
+- <span className="text-sky-600 dark:text-sky-400">Minor</span> versions represent
+  additions of backwards-compatible **functionality**.
+- <span className="text-sky-600 dark:text-sky-400">Patch</span> versions represent
+  backwards-compatible **bug fixes**.
+
+Here's an example SemVer-compatible version:
+
+<SemVer major="21" minor="3" patch="12" explainer={false} />
+
+A breaking API change would entail a bump to major version 22 while a bug fix would entail a patch version bump to 13.
+
+For things like pre-releases you can add extra information to the <span className="text-sky-600 dark:text-sky-400">patch</span>.
+
+<SemVer major="21" minor="3" patch="12-pre" />
+
+## Why do I want SemVer?
+
+We don't follow our dependencies' branches in Rust, JavaScript, or other programming languages.
+Those ecosystems follow SemVer and we expect updates to generally work.
+Why should Nix be any different?
+
+Using SemVer means that publishers can reduce their support burden by issuing stable, known releases.
+Publishers don't have to choose between recommending an exact version their users get stuck on and their users following the development branch.
+
+SemVer means users can stay up to date on the most recent release and have confidence their code will work.
+
+## Why should I publish my flake?
+
+Briefly?
+Happier users, happier publishers.
+
+Issuing tagged, SemVer-compatible releases tells your users what to expect in the upgrade.
+Publishing through FlakeHub means that your users stay up to date and don't get stuck on an old release.
+
+Versioning your software means you can iterate on your API and improve your code without risking upending your user's code.
+
+## Errors
+
+### `"error: unsupported tarball input attribute 'rev'"`
+
+Using a flake from a newer version of Nix on a machine with an old version of Nix may fail to read the `flake.lock`. [Upgrade Nix](#TODO) and try again.
+
+### `"error: unsupported tarball input attribute 'lastModified'"`
+
+See directly above.
+
+[agenix]: https://github.com/ryantm/agenix
 [detsys]: https://determinate.systems
+[fenix]: https://github.com/nix-community/fenix
+[rust]: https://rust-lang.org
+[semver]: ./concepts/semver
 [upgrade-nix]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-upgrade-nix.html
