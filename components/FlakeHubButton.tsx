@@ -8,7 +8,7 @@ const FlakeHubButton = () => {
           <div className="flex items-center gap-6">
             <span>
               <svg
-                className="h-4 w-auto md:h-5 lg:h-6"
+                className="h-5 w-auto md:h-6"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlSpace="preserver"
                 enableBackground="new 0 0 5000 4330.17"
@@ -109,8 +109,10 @@ const FlakeHubButton = () => {
             </span>
 
             <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
-              <span className="text-xl font-medium">FlakeHub</span>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <span className="font-medium md:text-lg lg:text-xl">
+                FlakeHub
+              </span>
+              <p className="text-xs font-light text-gray-500 dark:text-gray-400 md:text-sm lg:text-base">
                 A platform for discovering and publishing Nix flakes
               </p>
             </div>

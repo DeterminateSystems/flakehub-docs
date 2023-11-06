@@ -1,0 +1,62 @@
+# Flake discovery
+
+FlakeHub provides several ways of discovering flakes that have been published to the platform.
+
+### Search
+
+The FlakeHub UI provides a search bar that enables you to search for flakes using arbitrary search queries, such as "rust" or "nix neovim."
+You can activate the search bar using <kbd>&#8984; + K</kbd> or <kbd>Ctrl + K</kbd>.
+
+You can also search using the [FlakeHub CLI][cli]'s [`search`][cli-search] command.
+Here's an example:
+
+```shell
+fh search wayland
+```
+
+### Listing
+
+#### All flakes [#list-flakes]
+
+You can see a listing of all available flakes at [flakehub.com/flakes][all-flakes] or using [`fh`][cli]:
+
+```shell
+fh list flakes
+```
+
+#### All organizations [#list-orgs]
+
+You can see a listing of all public organizations at [flakehub.com/orgs][all-orgs] or using [`fh`][cli]:
+
+```shell
+fh list orgs
+```
+
+#### Releases for a flake [#list-releases]
+
+You can see a listing of all releases of a flake at a URL with this structure:
+
+> TODO: make a nice component for this
+
+You can also use the [`fh`][cli]'s [`list releases`][cli-releases] command:
+
+```shell
+fh list releases ublue-os/fleek
+```
+
+#### Matching versions [#list-versions]
+
+You can see a listing of all
+
+> TODO: make a nice component for this
+
+#### By label [#labels]
+
+> TODO: make a nice component for this
+
+
+[all-flakes]: https://flakehub.com/flakes
+[all-orgs]: https://flakehub.com/orgs
+[cli]: ../cli
+[cli-releases]: ../cli#releases
+[cli-search]: ../cli#search

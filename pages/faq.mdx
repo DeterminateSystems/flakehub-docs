@@ -4,7 +4,7 @@ title: FAQ
 
 # Frequently asked questions
 
-## How can I update Nix to use FlakeHub?
+## How can I update Nix to use FlakeHub? [#update-nix]
 
 We at [Determinate Systems][detsys] recommend using Nix **2.18.1** or newer in conjunction with FlakeHub.
 
@@ -41,7 +41,7 @@ Or using FlakeHub:
 nix shell "https://flakehub.com/f/NixOS/nix/2.18.1.tar.gz"
 ```
 
-## Don't flakes follow versions already?
+## Don't flakes follow versions already? [#flake-versions]
 
 Flake inputs provide two option, and neither is equivalent to FlakeHub.
 
@@ -64,31 +64,11 @@ When you lock your dependencies, your project will use whatever version was comm
 
 FlakeHub introduces [semantic versioning][semver] (SemVer) to the Nix world to help users stay up to date and to reduce the support burden on flake publishers.
 
-## What is SemVer, semantic versioning?
+## What is SemVer, semantic versioning? [#what-is-semver]
 
-FlakeHub enables you to use a subset of Semantic Versioning (SemVer) with your Nix flakes.
-The diagram below provides a quick refresher on the structure of versions in SemVer:
+See our dedicated [Semantic versioning][semver] concept doc.
 
-<SemVer major="major" minor="minor" patch="patch" explainer />
-
-- <span className="text-pink-600 dark:text-pink-400">Major</span> versions represent
-  backwards-incompatible **API changes**.
-- <span className="text-sky-600 dark:text-sky-400">Minor</span> versions represent
-  additions of backwards-compatible **functionality**.
-- <span className="text-sky-600 dark:text-sky-400">Patch</span> versions represent
-  backwards-compatible **bug fixes**.
-
-Here's an example SemVer-compatible version:
-
-<SemVer major="21" minor="3" patch="12" explainer={false} />
-
-A breaking API change would entail a bump to major version 22 while a bug fix would entail a patch version bump to 13.
-
-For things like pre-releases you can add extra information to the <span className="text-sky-600 dark:text-sky-400">patch</span>.
-
-<SemVer major="21" minor="3" patch="12-pre" />
-
-## Why do I want SemVer?
+## Why do I want SemVer? [#why-semver]
 
 We don't follow our dependencies' branches in Rust, JavaScript, or other programming languages.
 Those ecosystems follow SemVer and we expect updates to generally work.
@@ -99,7 +79,7 @@ Publishers don't have to choose between recommending an exact version their user
 
 SemVer means users can stay up to date on the most recent release and have confidence their code will work.
 
-## Why should I publish my flake?
+## Why should I publish my flake? [#why-publish]
 
 Briefly?
 Happier users, happier publishers.
@@ -111,11 +91,11 @@ Versioning your software means you can iterate on your API and improve your code
 
 ## Errors
 
-### `"error: unsupported tarball input attribute 'rev'"`
+### `"error: unsupported tarball input attribute 'rev'"` [#err-unsupported-tarball]
 
 Using a flake from a newer version of Nix on a machine with an old version of Nix may fail to read the `flake.lock`. [Upgrade Nix](#TODO) and try again.
 
-### `"error: unsupported tarball input attribute 'lastModified'"`
+### `"error: unsupported tarball input attribute 'lastModified'"` [#err-last-modified]
 
 See directly above.
 

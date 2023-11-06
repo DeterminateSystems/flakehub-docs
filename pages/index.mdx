@@ -5,13 +5,35 @@ title: FlakeHub documentation
 # The FlakeHub documentation
 
 Welcome to the docs for [**FlakeHub**][flakehub]!
+FlakeHub is a [Nix flake][flakes] management platform built by [Determinate Systems][detsys].
+It provides support for [Semantic Versioning](#semver) (SemVer) for your organization and a central place to discover flakes.
+
+## Semantic versioning [#semver]
+
+[Nix] has no built-in concept of [semantic versioning][semver].
+TODO...
+
+## Flake discovery [#discovery]
+
+FlakeHub provides you with several ways to discover [flakes] published to the platform, including:
+
+* Plaintext [search]
+* Lists for:
+  * [All flakes][list-flakes]
+  * [All orgs][list-orgs]
+  * [Flake releases][releases]
+  * Flake [versions] matching a [version constraint][semver]
 
 <FlakeHubButton />
 
-FlakeHub is a [Nix flake][flakes] management platform built by [Determinate Systems][detsys].
-It provides support for [Semantic Versioning][semver] (SemVer) for your organization and a central place to discover flakes.
-
+[cli]: /docs/cli
 [detsys]: https://determinate.systems
 [flakehub]: /
 [flakes]: https://zero-to-nix.com/concepts/flakes
+[list-flakes]: ./features/discovery#list-flakes
+[list-orgs]: ./features/discovery#all-orgs
+[nix]: https://zero-to-nix.com/concepts/nix
+[releases]: ./features/discovery#releases
+[search]: ./features/discovery#search
 [semver]: /docs/concepts/semver
+[versions]: ./features/discovery#matching-versions

@@ -1,1 +1,50 @@
 # Webhooks
+
+> TODO: make a nice component indicating that this is a beta feature
+
+Webhooks can let your integrations take action in response to releases published on FlakeHub.
+They can be associated with any public flake, or unlisted and private flakes your account has access to.
+Optionally, the events may be filtered by a version specifier.
+Webhook payloads sent by FlakeHub are signed if you provide a secret in the configuration, with the signature sent in the `X-FlakeHub-Signature-256` header.
+
+## Example webhook configuration [#example-config]
+
+Option | What it does | Example
+:------|:-------------|:-------
+URL | URL to receive the POSTed webhook event | `https://example.com/webhook`
+Flake | The case-insensitive name of the flake to subscribe to | `DeterminateSystems/flake-schemas`
+Version specifier | A [SemVer] version specifier event filter | `0.1.*`
+Secret | The secret value to [HMAC] sign the message body with | `20f6dadcca4076863536ea852264e1d9105cc429d01f319872225ffe65ea8a92`
+
+## Payload
+
+For every matching release, your webhook receive JSON as a `POST` with a `Content-Type` of `application/json`.
+Here's an example JSON payload:
+
+```json
+{
+  "release": {
+    "owner": "DeterminateSystems",
+    "name": "fh",
+    "version": "0.1.5",
+    "revision": "c1b3308d60944c851e53df5eafd2384edec24178",
+    "release_uuid": "018aadd0-e626-7807-abc0-756fc529f996",
+    "visibility": "public",
+    "mirrored": false,
+    "description": "The official CLI for FlakeHub: search for flakes, and add new inputs to your Nix flake.",
+    "published_at": "2023-09-19T14:21:04.163308Z",
+    "project_html_url": "https://flakehub.com/flake/DeterminateSystems/fh",
+    "release_html_url": "https://flakehub.com/flake/DeterminateSystems/fh/0.1.5",
+    "flake_nix_url": "https://flakehub.com/f/DeterminateSystems/fh/0.1.5.tar.gz"
+  }
+}
+```
+
+<Admonition kind="warning">
+For the beta, webhooks are attempted only once.
+We plan to provide configurable retry logic in the future.
+</Admonition>
+
+[hmac]: https://en.wikipedia.org/wiki/HMAC
+[semver]: ../concepts/semver
+[webhooks]: https://zapier.com/blog/what-are-webhooks
