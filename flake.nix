@@ -15,13 +15,28 @@
     in {
       schemas = flake-schemas.schemas;
 
-      devShells = forEachSupportedSystem ({ pkgs }: {
+      devShells = forEachSupportedSystem ({ pkgs }: let
+        scripts = with pkgs; [
+          (writeScriptBin "lint-style" ''
+            vale pages
+          '')
+
+          (writeScriptBin "preview" ''
+            pnpm run build
+            serve ./out
+          '')
+
+          (writeScriptBin "check-sensitivity" ''
+            alex --quiet pages
+          '')
+        ];
+      in {
         default = pkgs.mkShell {
           packages = with pkgs; [
+            vale
             nodejs-18_x
-            nodePackages.pnpm
             nixpkgs-fmt
-          ];
+          ] ++ (with pkgs.nodePackages_latest; [ alex pnpm serve ]) ++ scripts;
         };
       });
     };
