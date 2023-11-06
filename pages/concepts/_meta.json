@@ -1,4 +1,5 @@
 {
+  "flake-schemas": "Flake schemas",
   "mirroring": "Mirroring",
   "releases": "Releases",
   "semver": "Semantic versioning",
