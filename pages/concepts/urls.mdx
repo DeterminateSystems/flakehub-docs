@@ -16,29 +16,30 @@ Here's the structure of FlakeHub URLs:
 The `version-range` field defines the boundaries of versions you want.
 The range is not an exact version number, and allows SemVer compatible upgrades.
 
-FlakeHub's version solver behaves like Cargo's version solver.
+FlakeHub's version solver behaves like [Cargo's version solver][resolution].
 In short, here are some example version ranges and how they're interpreted:
 
-* **1.0.1** will always be at least 1.0.1, and will never upgrade to 2.0.0.
-* **0.1.1** will get at least 0.1.1 but will never upgrade to 0.2.0.
+* **1.0.1** is always 1.0.1 and never upgrades to 2.0.0.
+* **0.1.1** returns at least 0.1.1 but never upgrades to 0.2.0.
 
 FlakeHub also offers a few comparison operators, which generally shouldn't be necessary.
 
-## Tilde operator (~)
+## Tilde operator (`~`) [#tilde]
 
-The tilde reduces the maximum version boundary when specifying the major and minor versions.
-For example, ~1.0 upgrades to any version between 1.0 and 1.1 but not to 1.1.
+The tilde (`~`) reduces the maximum version boundary when specifying the major and minor versions.
+The version constraint `~1.0`, for example, upgrades to any version between 1.0 and 1.1 but not to 1.1.
 
-## Wildcard operator (*)
+## Wildcard operator (`*`) [#wildcard]
 
-The wildcard allows for any version in that position.
+The wildcard (`*`) allows for any version in that position.
 
-* The version range * will always use the highest published version.
-* 1.2.* will allow any version with the major and minor version 1.2.
+* The version range `*` always uses the highest published version.
+* `1.2.*` allows any version with the major and minor version 1.2.
 
-## Equals operator (=)
+## Equals operator (`=`) [#equals]
 
-The equals operator allows users to specify exactly one version with no room to update.
+The equals (`=`) operator enables users to specify exactly one version with no room to update.
 
-    =1.0 will always get version 1.0.
+* `=1.0` always returns version 1.0.
 
+[resolution]: https://doc.rust-lang.org/cargo/reference/resolver.html#semver-compatibility
