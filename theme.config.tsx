@@ -1,6 +1,8 @@
 import Admonition from "@components/Admonition";
+import Beta from "@components/Beta";
 import FlakeHubButton from "@components/FlakeHubButton";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
+import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
 import { ExampleUrls, UrlStructure } from "@components/UrlStructure";
 import { DocsThemeConfig } from "nextra-theme-docs";
@@ -93,6 +95,7 @@ const config: DocsThemeConfig = {
     ExampleUrls: ExampleUrls,
     FlakeHubButton: FlakeHubButton,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
+    Rolling: Rolling,
     SemVer: SemVer,
     UrlStructure: UrlStructure,
   },

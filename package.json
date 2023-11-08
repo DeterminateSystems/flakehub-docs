@@ -7,6 +7,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "clsx": "^2.0.0",
     "isomorphic-dompurify": "^1.9.0",
     "marked": "^5.1.2",

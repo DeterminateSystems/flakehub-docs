@@ -4,4 +4,30 @@ FlakeHub supports two methods of versioning your flakes: [tagged](#tagged) and [
 
 ## Tagged
 
+**Tagged** releases are better suited for projects that follow [SemVer] and have a defined release cadence.
+The versioning scheme of tagged flakes is up to the author, as long as it conforms to SemVer.
+An example of this kind of flake is the [`fh`][fh] flake.
+
 ## Rolling
+
+**Rolling** versions are ideal for projects that see a constant stream of commits and releases.
+The versioning scheme of rolling flakes has:
+
+* A SemVer major version of **0**
+* A SemVer minor version of **1** (for the NixOS unstable rolling release train)
+* A SemVer patch version of the **number of commits** that were on that branch at that time
+
+Here's a visual representation:
+
+<Rolling />
+
+[Nixpkgs] is an example of a flake with rolling versioning.
+Release [`0.1.494976`][version], for example represents the 494976th commit within the unstable epoch.
+
+Consult the [Publishing] guide to see how to enable this.
+
+[fh]: https://flakehub.com/flake/DeterminateSystems/fh
+[nixpkgs]: https://flakehub.com/flake/nixOS/nixpkgs
+[publishing]: ../publishing
+[semver]: ./semver
+[version]: https://flakehub.com/flake/NixOS/nixpkgs/0.1.494976+rev-7c67f006ea0e7d0265f16d7df07cc076fdffd91f

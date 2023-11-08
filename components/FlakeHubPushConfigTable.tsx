@@ -33,7 +33,7 @@ type Param = {
 
 const FlakeHubPushConfigTable = ({ params }: { params: Param[] }) => {
   return (
-    <table className="table-auto overflow-auto">
+    <table className="prose dark:prose-invert table-auto overflow-auto">
       <thead>
         <tr>
           <th>Parameter</th>

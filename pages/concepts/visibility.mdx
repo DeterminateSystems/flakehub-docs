@@ -1,12 +1,23 @@
 # Flake visibility
 
-[Flakes] on FlakeHub have three visibility modes:
+[Flakes] on FlakeHub have two visibility modes:
 
 Visibility | Meaning | Suggested when
 :----------|:--------|:--------------
-**Public** | The flake is viewable and usable if you know the URL for the flake and it shows up in search results and on the [flake listing][all-flakes]. | You want to boldly and proudly share your flake with the world.
-**Unlisted** | The flake is viewable and usable *only* if you know the URL for it. It shows up neither in search results nor on the [flake listing][all-flakes]. | You want the flake to be usable but it's not ready to be public (or perhaps you never want to make it public).
-**Private** | The flake is viewable and usable solely if you are logged into FlakeHub.
+[**Public**](#public) | The flake is viewable and usable if you know the URL for the flake and it shows up in search results and on the [flake listing][all-flakes]. | You want to boldly and proudly share your flake with the world.
+[**Unlisted**](#unlisted) | The flake is viewable and usable *only* if you know the URL for it. It shows up neither in search results nor on the [flake listing][all-flakes]. | You want the flake to be usable but it's not ready to be public (or perhaps you never want to make it public).
+
+## Public flakes [#public]
+
+**Public** flakes are searchable, listed under the owner on the [Organizations][orgs] page, and are displayed throughout FlakeHub.
+Public flakes can be downloaded by anyone without authenticating.
+
+## Unlisted flakes [#unlisted]
+
+**Unlisted** flakes are excluded from search results and general listings but they are *not* private.
+Just like [public](#public) flakes, unlisted flakes can be downloaded by anyone.
+Unlisted flakes can be useful for distributing code through FlakeHub that you're not yet ready to advertise.
 
 [all-flakes]: /flakes
 [flakes]: https://zero-to-nix.com/concepts/flakes
+[orgs]: https://flakehub.com/orgs

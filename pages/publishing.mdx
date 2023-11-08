@@ -4,16 +4,16 @@ You can publish your flakes to FlakeHub using the [`flakehub-push`][action] GitH
 
 We recommend using FlakeHub's [flake publishing wizard][wizard] as a quickstart.
 
-## Suggestions for your flake's README
+## Suggestions for your flake's README [#readme]
 
-While it's totally up to you what you put in your README...
+While it's totally up to you what you put in your README, we recommend something along these lines:
 
 ````markdown
 # Use as a flake
 
 [![FlakeHub](https://img.shields.io/endpoint?url=https://flakehub.com/f/YourOrgName/YourFlakeName/badge)](https://flakehub.com/flake/YourOrgName/YourFlakeName)
 
-Add YourFlakeName to your `flake.nix`:
+Add `YourFlakeName` to your `flake.nix`:
 
 ```nix
 {
@@ -25,6 +25,20 @@ Add YourFlakeName to your `flake.nix`:
 }
 ```
 ````
+
+Notice the badge from [shields.io][shields] and the example `flake.nix` file.
+
+## Flake metadata [#metadata]
+
+Property | Source
+:--------|:------
+Description | The description field of the `flake.nix`.
+License | Read from the GitHub API. Overridden by the [`spdx-expression`](#cfg-spdx-expression) option.
+Name | Read from the ambient environment. Overridden via the name option.
+README | Read from `README.md` in the root of the flake.
+Tag | Read from the ambient environment. Overridden via the tag option.
+Rolling | Release version numbers. Rolling releases are `0.[rolling-minor].[commit-count]`, where the commit count comes from the GitHub API.
+Labels | Read from the repo's GitHub topics. Additional labels can be set with the extra-labels option.
 
 ## Configuration
 
@@ -160,4 +174,5 @@ Add YourFlakeName to your `flake.nix`:
 />
 
 [action]: https://github.com/DeterminateSystems/flakehub-push
+[shields]: https://shields.io
 [wizard]: /new

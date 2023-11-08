@@ -2,6 +2,7 @@ import clsx from "clsx";
 import {
   IoCheckmarkOutline,
   IoInformationCircleOutline,
+  IoWarningOutline,
 } from "react-icons/io5";
 
 const Admonition = ({
@@ -30,8 +31,11 @@ const Admonition = ({
         {kind === "success" && (
           <IoCheckmarkOutline className="fill-2 text-green-500 dark:text-green-400" />
         )}
+        {kind == "warning" && (
+          <IoWarningOutline className="fill-2 text-yellow-500 dark:text-yellow-400" />
+        )}
 
-        <div>{children}</div>
+        <div className="text-sm md:text-base">{children}</div>
       </div>
     </div>
   );
