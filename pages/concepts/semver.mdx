@@ -1,0 +1,27 @@
+---
+title: Semantic versioning
+---
+
+# Semantic versioning for Nix
+
+FlakeHub enables you to use a subset of Semantic Versioning (SemVer) with your Nix flakes.
+The diagram below provides a quick refresher on the structure of versions in SemVer:
+
+<SemVer major="major" minor="minor" patch="patch" explainer />
+
+- <span className="text-pink-600 dark:text-pink-400">Major</span> versions represent
+  backwards-incompatible **API changes**.
+- <span className="text-sky-600 dark:text-sky-400">Minor</span> versions represent
+  additions of backwards-compatible **functionality**.
+- <span className="text-sky-600 dark:text-sky-400">Patch</span> versions represent
+  backwards-compatible **bug fixes**.
+
+Here's an example SemVer-compatible version:
+
+<SemVer major="21" minor="3" patch="12" explainer={false} />
+
+A breaking API change would entail a bump to major version 22 while a bug fix would entail a patch version bump to 13.
+
+For things like pre-releases you can add extra information to the <span className="text-sky-600 dark:text-sky-400">patch</span>.
+
+<SemVer major="21" minor="3" patch="12-pre" />

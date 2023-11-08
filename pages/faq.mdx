@@ -1,0 +1,107 @@
+---
+title: FAQ
+---
+
+# Frequently asked questions
+
+## How can I update Nix to use FlakeHub? [#update-nix]
+
+We at [Determinate Systems][detsys] recommend using Nix **2.18.1** or newer in conjunction with FlakeHub.
+
+You can upgrade Nix using the [`upgrade-nix`][upgrade-nix] command. To upgrade to Nix 2.18.1:
+
+```shell
+sudo nix upgrade-nix \
+  --nix-store-paths-url https://releases.nixos.org/nix/nix-2.18.1/fallback-paths.nix
+```
+
+Note that `sudo` is necessary.
+
+Some older versions are supported, too.
+FlakeHub depends on relatively recent features of Nix.
+These versions of Nix are supported:
+
+* Nix **2.13.5** and above
+* Nix **2.15.2** and above
+* Nix **2.17** and above
+
+Note that Nix 2.14 and Nix 2.16 are *not* supported.
+
+If you're on NixOS, updating to a recent release of NixOS should update Nix automatically.
+
+If you want a transient shell environment with Nix 2.18.1:
+
+```shell
+nix shell "github:NixOS/nix/2.18.1"
+```
+
+Or using FlakeHub:
+
+```shell
+nix shell "https://flakehub.com/f/NixOS/nix/2.18.1.tar.gz"
+```
+
+## Don't flakes follow versions already? [#flake-versions]
+
+Flake inputs provide two option, and neither is equivalent to FlakeHub.
+
+Flakes can refer to a Git tag.
+The [`github:ryantm/agenix/0.13.0`][agenix] uses the `0.13.0` tag of the `agenix` project.
+Your project will always use exactly that version and updating your `flake.lock` won't change that.
+The benefit is that 0.13.0 is identifiable and predictable.
+But there's a problem: your project will be stuck on 0.13.0 until you change it by hand, even if `agenix` 0.13.1 is released with important updates and is fully compatible.
+
+Flakes can also point to a Git branch.
+[Fenix], for example, is a nice tool for packaging [Rust] toolchains in Nix.
+Its GitHub flake reference is `github:nix-community/fenix`, which points to the main branch of Fenix.
+
+When you lock your dependencies, your project will use whatever version was committed to main at the moment you updated. Whether or not it was ready for users, or in the middle of a major refactor. This poses a few of questions:
+
+1. Are the changes on the main API compatible or will I need to change my Nix expressions?
+1. Has this commit been tested against my architecture and my use case?
+1. As a publisher of flakes, how can I change my API without making my users unhappy?
+1. As a publisher, should I recommend users to get stuck on a version or follow the ups and downs of a development branch?
+
+FlakeHub introduces [semantic versioning][semver] (SemVer) to the Nix world to help users stay up to date and to reduce the support burden on flake publishers.
+
+## What is SemVer, semantic versioning? [#what-is-semver]
+
+See our dedicated [Semantic versioning][semver] concept doc.
+
+## Why do I want SemVer? [#why-semver]
+
+We don't follow our dependencies' branches in Rust, JavaScript, or other programming languages.
+Those ecosystems follow SemVer and we expect updates to generally work.
+Why should Nix be any different?
+
+Using SemVer means that publishers can reduce their support burden by issuing stable, known releases.
+Publishers don't have to choose between recommending an exact version their users get stuck on and their users following the development branch.
+
+SemVer means users can stay up to date on the most recent release and have confidence their code will work.
+
+## Why should I publish my flake? [#why-publish]
+
+Briefly?
+Happier users, happier publishers.
+
+Issuing tagged, SemVer-compatible releases tells your users what to expect in the upgrade.
+Publishing through FlakeHub means that your users stay up to date and don't get stuck on an old release.
+
+Versioning your software means you can iterate on your API and improve your code without risking upending your user's code.
+
+## Errors
+
+### `"error: unsupported tarball input attribute 'rev'"` [#err-unsupported-tarball]
+
+Using a flake from a newer version of Nix on a machine with an old version of Nix may fail to read the `flake.lock`. [Upgrade Nix](#TODO) and try again.
+
+### `"error: unsupported tarball input attribute 'lastModified'"` [#err-last-modified]
+
+See directly above.
+
+[agenix]: https://github.com/ryantm/agenix
+[detsys]: https://determinate.systems
+[fenix]: https://github.com/nix-community/fenix
+[rust]: https://rust-lang.org
+[semver]: ./concepts/semver
+[upgrade-nix]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-upgrade-nix.html

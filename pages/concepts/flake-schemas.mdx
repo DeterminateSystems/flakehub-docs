@@ -1,0 +1,50 @@
+# Flake schemas
+
+[Flake schemas][schemas] are a way to tell Nix about the structure of your [flake's outputs][outputs].
+If you have outputs that are not part of the default schema definitions (see the [`flake-schemas` README][readme] for the default flake output types), you can make your own schema, which will show up on your flake's FlakeHub page.
+
+## Custom flake schemas [#custom]
+
+Here is an example flake that defines a schema for its `superSpecialPackage` output:
+
+```nix
+{
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
+
+  outputs = { ... } @ inputs:
+    let
+      mkChildren = children: { inherit children; };
+    in
+    {
+      superSpecialPackage.x86_64-linux.default = inputs.nixpkgs.legacyPackages.x86_64-linux.hello;
+
+      schemas.superSpecialPackage = {
+        version = 1;
+        doc = "The `superSpecialPackage` output defines a [super special package](https://example.org).";
+        inventory = output: mkChildren (
+          builtins.mapAttrs
+            (systemType: packagesForSystem:
+              {
+                forSystems = [ systemType ];
+                children = builtins.mapAttrs
+                  (packageName: package:
+                    {
+                      forSystems = [ systemType ];
+                      what = "super special package";
+                      shortDescription = package.meta.description or "";
+                      derivation = package;
+                      evalChecks.isDerivation =
+                        package.type or null == "derivation"
+                        && package ? drvPath;
+                    })
+                  packagesForSystem;
+              })
+            output);
+      };
+    };
+}
+```
+
+[outputs]: https://zero-to-nix.com/concepts/flakes#outputs
+[readme]: https://github.com/DeterminateSystems/flake-schemas#flake-schemas
+[schemas]: https://determinate.systems/posts/flake-schemas

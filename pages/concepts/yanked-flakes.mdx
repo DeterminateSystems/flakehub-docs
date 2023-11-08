@@ -1,0 +1,14 @@
+# Yanked flakes
+
+You can *yank* any flake release on FlakeHub if you wish, for example if the release is published by mistake or it's deemed to have significant flaws.
+Yanked flakes are:
+
+* Never considered when resolving a flake [version constraint][semver], *even if it's the only possible solution*.
+* Still available to users who have that version locked in the [`flake.lock`][lockfile] file.
+* Still visible on the website, although the UI clearly indicates that they've been yanked.
+
+At this time, publishers cannot yank releases on their own. Please contact [support@flakehub.com][support] and we'll get it sorted.
+
+[lockfile]: https://zero-to-nix.com/concepts/flakes#lockfile
+[semver]: ./semver
+[support]: mailto:support@flakehub.com

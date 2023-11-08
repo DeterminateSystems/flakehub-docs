@@ -1,0 +1,45 @@
+# How FlakeHub URLs work
+
+Here's the structure of FlakeHub URLs:
+
+<UrlStructure />
+
+<ExampleUrls
+  examples={[
+    { org: "ryantm", repo: "agenix", version: "0.13" },
+    { org: "NixOS", repo: "nixpkgs", version: "*" },
+    { org: "NixOS", repo: "nixpkgs", version: "~0.2305" },
+    { org: "NixOS", repo: "nix", version: "=2.17.0" },
+  ]}
+/>
+
+The `version-range` field defines the boundaries of versions you want.
+The range is not an exact version number, and allows SemVer compatible upgrades.
+
+FlakeHub's version solver behaves like [Cargo's version solver][resolution].
+In short, here are some example version ranges and how they're interpreted:
+
+* **1.0.1** is always 1.0.1 and never upgrades to 2.0.0.
+* **0.1.1** returns at least 0.1.1 but never upgrades to 0.2.0.
+
+FlakeHub also offers a few comparison operators, which generally shouldn't be necessary.
+
+## Tilde operator (`~`) [#tilde]
+
+The tilde (`~`) reduces the maximum version boundary when specifying the major and minor versions.
+The version constraint `~1.0`, for example, upgrades to any version between 1.0 and 1.1 but not to 1.1.
+
+## Wildcard operator (`*`) [#wildcard]
+
+The wildcard (`*`) allows for any version in that position.
+
+* The version range `*` always uses the highest published version.
+* `1.2.*` allows any version with the major and minor version 1.2.
+
+## Equals operator (`=`) [#equals]
+
+The equals (`=`) operator enables users to specify exactly one version with no room to update.
+
+* `=1.0` always returns version 1.0.
+
+[resolution]: https://doc.rust-lang.org/cargo/reference/resolver.html#semver-compatibility
