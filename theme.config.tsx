@@ -1,5 +1,4 @@
 import Admonition from "@components/Admonition";
-import Beta from "@components/Beta";
 import FlakeHubButton from "@components/FlakeHubButton";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
