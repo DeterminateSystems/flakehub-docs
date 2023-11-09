@@ -11,6 +11,7 @@ const withNextra = nextra({
 
 export default withNextra({
   assetPrefix: isProd ? "https://flakehub.com/docs" : undefined,
+  basePath: isProd ? "/docs" : undefined,
   images: {
     unoptimized: true,
   },
