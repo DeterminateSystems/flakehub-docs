@@ -9,7 +9,6 @@ import {
   LabelUrl,
   ReleaseUrl,
   UrlStructure,
-  VersionUrl,
 } from "@components/UrlStructure";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
