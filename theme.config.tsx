@@ -42,6 +42,17 @@ const config: DocsThemeConfig = {
     SemVer: SemVer,
     UrlStructure: UrlStructure,
   },
+  footer: {
+    text: (
+      <span>
+        {new Date().getFullYear()} ©{" "}
+        <a href="https://determinate.systems" target="_blank">
+          Determinate Systems
+        </a>
+        , Inc. All rights reserved.
+      </span>
+    ),
+  },
 };
 
 export default config;
