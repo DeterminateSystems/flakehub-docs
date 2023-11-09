@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .prose code::before,
+  .prose code::after {
+    content: "";
+  }
+}
+
 /* Syntax highlighting theme */
 :root {
   --shiki-color-text: #414141;
