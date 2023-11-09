@@ -1,5 +1,4 @@
 {
   "discovery": "Flake discovery",
-  "private-flakes": "Private flakes",
   "webhooks": "Webhooks"
 }
