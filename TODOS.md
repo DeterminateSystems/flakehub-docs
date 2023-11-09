@@ -1,3 +1,4 @@
 # TODOs
 
-- [ ] Add the FlakeHub logo to the navbar brand
+- [ ] Favicon
+- [ ] SEO metadata

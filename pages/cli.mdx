@@ -11,9 +11,38 @@ To run the CLI:
 nix run "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz"
 ```
 
-<Admonition kind="success">
-We also provide installation instructions [for NixOS][nixos-install].
-</Admonition>
+## Installation
+
+The `nix run` command above builds `fh` locally on your computer.
+We will be providing pre-built binaries soon.
+
+### NixOS
+
+To make the `fh` CLI readily available on a [NixOS] system:
+
+```nix
+{
+  description = "My NixOS config.";
+
+  inputs.fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2305.*.tar.gz";
+
+  outputs = { nixpkgs, fh, ... } @ inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        {
+          environment.systemPackages = [ fh.packages.x86_64-linux.default ];
+        }
+
+        # ... the rest of your modules here ...
+      ];
+    };
+  };
+}
+```
+
+## Interface
 
 `fh` enables you to do a variety of things:
 
@@ -23,31 +52,238 @@ Command | What it does | Example
 [`completion`](#completion) | Provides auto-completion scripts for a variety of common shells | `fh completion bash`
 [`init`](#init) | Creates a new `flake.nix` file for you using a combination of the contents of your project and your user input | `fh init`
 [`list flakes`](#list-flakes) | Lists all public flakes on FlakeHub	| `fh list flakes`
-`list orgs` | Lists all public organizations on FlakeHub | `fh list orgs`
-`list releases` | Lists all public releases for a flake | `fh list releases DeterminateSystems/nuenv`
-`list versions` | Lists all public releases for a flake that match the provided version requirement | `fh list versions NixOS/nixpkgs "0.2305.*"`
-`search` | Lists all flakes that match the provided search query | `fh search "home manager"`
+[`list orgs`](#list-orgs) | Lists all public organizations on FlakeHub | `fh list orgs`
+[`list releases`](#list-releases) | Lists all public releases for a flake | `fh list releases DeterminateSystems/nuenv`
+[`list versions`](#list-versions) | Lists all public releases for a flake that match the provided version requirement | `fh list versions NixOS/nixpkgs "0.2305.*"`
+[`search`](#search) | Lists all flakes that match the provided search query | `fh search "home manager"`
 
-## Add
+### Add
 
-## Completion
+`fh add` adds the most current release of the specified flake to your `flake.nix` and updates the `outputs` function to accept it.
+This would add the current release of [Nixpkgs] to your flake:
 
-## Initialize [#init]
+```shell
+fh add nixos/nixpkgs
+```
 
-## Search
+The resulting `flake.nix` would look something like this:
 
-## List
+```nix
+{
+  description = "My new flake.";
 
-### Flakes [#list-flakes]
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2305.490449.tar.gz";
 
-### Organizations [#list-orgs]
+  outputs = { nixpkgs, ... } @ inputs: {
+    # Fill in your outputs here
+  };
+}
+```
 
-### Releases [#list-releases]
+### Shell completion [#completion]
 
-### Versions [#list-versions]
+You can generate shell completion scripts using the `fh completion` command:
 
-### Label [#list-label]
+```shell
+fh completion <shell>
+```
 
+Here's an example:
+
+```shell
+fh completion bash
+```
+
+These shells are supported:
+
+* [Bash]
+* [Elvish]
+* [Fish]
+* [Powershell]
+* [zsh]
+
+### Initialize flakes from scratch [#init]
+
+`fh init` generates a new [`flake.nix`][flakes] file for you using a combination of:
+
+1. Your responses to interactive questions
+1. The contents of the repository in which you run the command.
+
+To create a `flake.nix`, navigate to the directory where you want to create it and run `fh init` (or specify a different directory using the `--root` option).
+Respond to the prompts it provides you and at the end `fh` will write a `flake.nix` to disk.
+
+`fh init` has built-in support for the following languages:
+
+* [Elm]
+* [Go]
+* [Java]
+* [JavaScript]
+* [PHP]
+* [Python]
+* [Ruby]
+* [Rust]
+* [Zig]
+
+<Admonition kind="warning">
+`fh init` operates on a best-guess basis and is opinionated in its suggestions.
+It's intended less as a comprehensive flake creation solution and more as a helpful kickstarter.
+</Admonition>
+
+### Search
+
+You can search publicly listed flakes using the `fh search` command and passing in a search query.
+Here's an example:
+
+```shell
+fh search rust
+```
+
+```console
++---------------------------------------------------------------------------------+
+| Flake                      FlakeHub URL                                         |
++---------------------------------------------------------------------------------+
+| astro/deadnix              https://flakehub.com/flake/astro/deadnix             |
+| carlthome/ml-runtimes      https://flakehub.com/flake/carlthome/ml-runtimes     |
+| ipetkov/crane              https://flakehub.com/flake/ipetkov/crane             |
+| kamadorueda/alejandra      https://flakehub.com/flake/kamadorueda/alejandra     |
+| nix-community/fenix        https://flakehub.com/flake/nix-community/fenix       |
+| nix-community/lanzaboote   https://flakehub.com/flake/nix-community/lanzaboote  |
+| nix-community/nix-init     https://flakehub.com/flake/nix-community/nix-init    |
+| nix-community/nixpkgs-fmt  https://flakehub.com/flake/nix-community/nixpkgs-fmt |
+| nix-community/patsh        https://flakehub.com/flake/nix-community/patsh       |
+| ryanccn/nyoom              https://flakehub.com/flake/ryanccn/nyoom             |
++---------------------------------------------------------------------------------+
+```
+
+`fh search` supports arbitrary search strings.
+An example:
+
+```shell
+fh search "rust nixos"
+```
+
+### List
+
+`fh` enables you to list a variety of FlakeHub resources.
+
+#### List flakes
+
+```shell
+fh list flakes
+```
+
+```console
++---------------------------------------------------------------------------------------------------------------+
+| Flake                                     FlakeHub URL                                                        |
++---------------------------------------------------------------------------------------------------------------+
+| ajaxbits/audiobookshelf                   https://flakehub.com/flake/ajaxbits/audiobookshelf                  |
+| ajaxbits/tone                             https://flakehub.com/flake/ajaxbits/tone                            |
+| astro/deadnix                             https://flakehub.com/flake/astro/deadnix                            |
+| ...                                       ...                                                                 |
++---------------------------------------------------------------------------------------------------------------+
+```
+
+#### List organizations [#list-orgs]
+
+```shell
+fh list orgs
+```
+
+```console
++-------------------------------------------------------------------------+
+| Organization            FlakeHub URL                                    |
++-------------------------------------------------------------------------+
+| ajaxbits                https://flakehub.com/org/ajaxbits               |
+| astro                   https://flakehub.com/org/astro                  |
+| ...                     ...                                             |
++-------------------------------------------------------------------------+
+```
+
+#### List releases
+
+`fh list releases` provides a list of a flake's [releases][semver].
+
+```shell
+fh list releases nixos/nixpkgs
+```
+
+```console
++------------------------------------------------------------+
+| Version                                                    |
++------------------------------------------------------------+
+| 0.1.428801+rev-2788904d26dda6cfa1921c5abb7a2466ffe3cb8c    |
+| 0.1.429057+rev-42337aad353c5efff4382d7bf99deda491459845    |
+| 0.1.429304+rev-27ccd29078f974ddbdd7edc8e38c8c8ae003c877    |
+| 0.1.429553+rev-5dc7114b7b256d217fe7752f1614be2514e61bb8    |
+| 0.1.429868+rev-a115bb9bd56831941be3776c8a94005867f316a7    |
+| ...                                                        |
++------------------------------------------------------------+
+```
+
+#### List versions
+
+Your can list [versions][semver] of a flake by passing the flake name and a version requirement to `fh list versions`:
+
+```shell
+fh list versions <flake> <version_req>
+```
+
+Here's an example:
+
+```shell
+fh list versions DeterminateSystems/flake-checker "0.1.*"
+```
+
+```console
++------------------------------------------------------------------------------------------------------+
+| Simplified version  FlakeHub URL                                                        Full version |
++------------------------------------------------------------------------------------------------------+
+| 0.1.0               https://flakehub.com/flake/DeterminateSystems/flake-checker/0.1.0   0.1.0        |
+| 0.1.1               https://flakehub.com/flake/DeterminateSystems/flake-checker/0.1.1   0.1.1        |
+| 0.1.2               https://flakehub.com/flake/DeterminateSystems/flake-checker/0.1.2   0.1.2        |
+| ...                 ...                                                                 ...          |
++------------------------------------------------------------------------------------------------------+
+```
+
+#### List by label [#list-label]
+
+You can list flakes by label using the `fh list label` comand:
+
+```shell
+fh list label <label>
+```
+
+Here's an example:
+
+```shell
+fh list label python
+```
+
+```console
++-------------------------------------------------------------------------------+
+| Flake                     FlakeHub URL                                        |
++-------------------------------------------------------------------------------+
+| nix-community/poetry2nix  https://flakehub.com/flake/nix-community/poetry2nix |
++-------------------------------------------------------------------------------+
+```
+
+[bash]: https://gnu.org/software/bash
+[elm]: https://elm-lang.org
+[elvish]: https://elv.sh
 [fh]: https://flakehub.com/flake/DeterminateSystems/fh
+[fish]: https://fishshell.com
 [flakehub]: https://flakehub.com
-[nixos-install]: https://flakehub.com/flake/DeterminateSystems/fh#readme-installation
+[flakes]: https://zero-to-nix.com/concepts/flakes
+[go]: https://golang.org
+[java]: https://java.com
+[javascript]: https://javascript.info
+[nixos]: https://nixos.org
+[nixpkgs]: https://github.com/NixOS/nixpkgs
+[php]: https://php.net
+[powershell]: https://learn.microsoft.com/powershell
+[python]: https://python.org
+[ruby]: https://ruby-lang.org
+[rust]: https://rust-lang.org
+[semver]: ./concepts/semver
+[zig]: https://ziglang.org
+[zsh]: https://zsh.org
