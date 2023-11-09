@@ -21,7 +21,7 @@ const Admonition = ({
           "border-green-500 bg-green-50 dark:border-green-400 dark:bg-gray-900",
         kind == "warning" &&
           "border-yellow-500 bg-yellow-50 dark:border-yellow-400 dark:bg-gray-900",
-        "!md:py-4 prose-sm md:prose-base prose-p:m-0 my-3 rounded-lg border-2 px-4 py-3 md:px-6",
+        "!md:py-4 prose-sm my-3 rounded-lg border-2 px-4 py-3 md:prose-base prose-p:m-0 md:px-6",
       )}
     >
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3 lg:gap-4">
