@@ -1,3 +1,4 @@
 [build]
 command = "pnpm run build"
 publish = "out"
+NODE_ENV = "production"
