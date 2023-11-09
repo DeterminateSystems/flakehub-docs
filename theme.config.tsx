@@ -4,7 +4,13 @@ import FlakeHubButton from "@components/FlakeHubButton";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
-import { ExampleUrls, UrlStructure } from "@components/UrlStructure";
+import {
+  ExampleUrls,
+  LabelUrl,
+  ReleaseUrl,
+  UrlStructure,
+  VersionUrl,
+} from "@components/UrlStructure";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
@@ -31,6 +37,8 @@ const config: DocsThemeConfig = {
     ExampleUrls: ExampleUrls,
     FlakeHubButton: FlakeHubButton,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
+    ReleaseUrl: ReleaseUrl,
+    LabelUrl: LabelUrl,
     Rolling: Rolling,
     SemVer: SemVer,
     UrlStructure: UrlStructure,

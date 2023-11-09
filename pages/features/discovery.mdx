@@ -36,7 +36,7 @@ fh list orgs
 
 You can see a listing of all releases of a flake at a URL with this structure:
 
-> TODO: make a nice component for this
+<ReleaseUrl />
 
 You can also use the [`fh`][cli]'s [`list releases`][cli-releases] command:
 
@@ -46,17 +46,28 @@ fh list releases ublue-os/fleek
 
 #### Matching versions [#list-versions]
 
-You can see a listing of all
+You can see a listing of all flake versions matching a version constraint using the [`fh`][cli]'s [`list versions`][cli-versions] command:
 
-> TODO: make a nice component for this
+```shell
+fh list versions DeterminateSystems/flake-checker "0.1.*"
+```
 
 #### By label [#labels]
 
-> TODO: make a nice component for this
+You can see a listing of all flakes bearing a specific label at a URL with this structure:
 
+<LabelUrl />
+
+You can also use the [`fh`][cli]'s [`list label`][cli-label] command:
+
+```shell
+fh list label nixos
+```
 
 [all-flakes]: https://flakehub.com/flakes
 [all-orgs]: https://flakehub.com/orgs
 [cli]: ../cli
-[cli-releases]: ../cli#releases
+[cli-label]: ../cli#list-label
+[cli-releases]: ../cli#list-releases
 [cli-search]: ../cli#search
+[cli-versions]: ../cli#list-versions

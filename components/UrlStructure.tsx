@@ -77,4 +77,47 @@ const UrlStructure = () => {
   );
 };
 
-export { ExampleUrls, UrlStructure };
+const ReleaseUrl = () => {
+  return (
+    <div className="not-prose my-4">
+      <div className="overflow-auto rounded-lg border border-gray-400 bg-gray-100 px-5 py-3 dark:border-gray-600 dark:bg-gray-800">
+        <p className="font-mono text-sm md:text-base lg:text-lg">
+          <span className="text-blue-500 dark:text-blue-400">
+            {`${EXAMPLE_BASE_URL}/flake/`}
+          </span>
+          <span className="text-orange-500 dark:text-orange-400">
+            :org/:project
+          </span>
+          <span className="text-blue-500 dark:text-blue-400">/releases</span>
+        </p>
+      </div>
+
+      <p className="float-right mt-1.5 space-x-2 font-mono text-xs md:mt-2 md:text-sm lg:mt-2.5">
+        <span className="text-blue-500 dark:text-blue-400">static</span>
+        <span className="text-orange-500 dark:text-orange-400">required</span>
+      </p>
+    </div>
+  );
+};
+
+const LabelUrl = () => {
+  return (
+    <div className="not-prose my-4">
+      <div className="overflow-auto rounded-lg border border-gray-400 bg-gray-100 px-5 py-3 dark:border-gray-600 dark:bg-gray-800">
+        <p className="font-mono text-sm md:text-base lg:text-lg">
+          <span className="text-blue-500 dark:text-blue-400">
+            {`${EXAMPLE_BASE_URL}/label/`}
+          </span>
+          <span className="text-orange-500 dark:text-orange-400">/:label</span>
+        </p>
+      </div>
+
+      <p className="float-right mt-1.5 space-x-2 font-mono text-xs md:mt-2 md:text-sm lg:mt-2.5">
+        <span className="text-blue-500 dark:text-blue-400">static</span>
+        <span className="text-orange-500 dark:text-orange-400">required</span>
+      </p>
+    </div>
+  );
+};
+
+export { ExampleUrls, LabelUrl, ReleaseUrl, UrlStructure };
