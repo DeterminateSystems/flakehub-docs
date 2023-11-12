@@ -19,7 +19,7 @@ const repoUrl = (org: string, repo: string) => `${orgUrl(org)}/${repo}`;
 
 const ExampleUrls = ({ examples }: { examples: FlakePath[] }) => {
   return (
-    <table className="prose table-auto overflow-auto dark:prose-invert">
+    <table className="my-4 prose table-auto overflow-auto dark:prose-invert">
       <thead>
         <tr>
           <th>Org</th>
