@@ -18,7 +18,9 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check --all-systems
-      - name: Run Nix CI suite
+      - name: Check sensitivity using Alex
         run: |
           nix develop --command check-sensitivity
+      - name: Check style using Vale
+        run: |
           nix develop --command lint-style
