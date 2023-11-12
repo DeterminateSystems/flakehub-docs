@@ -24,7 +24,8 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://flakehub.com",
   },
-  docsRepositoryBase: "https://github.com/DeterminateSystems/flakehub-docs",
+  docsRepositoryBase:
+    "https://github.com/DeterminateSystems/flakehub-docs/tree/main",
   logoLink: "https://flakehub.com",
   logo: (
     <div className="inline-flex items-center gap-2">
