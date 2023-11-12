@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
   "getting-started": "Getting started",
+  "learn": "Learn Nix",
   "publishing": "Publishing your flakes",
   "cli": "FlakeHub CLI",
   "features": "Features",

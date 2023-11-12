@@ -10,6 +10,8 @@ import {
   ReleaseUrl,
   UrlStructure,
 } from "@components/UrlStructure";
+import Z2NButton from "@components/Z2NButton";
+import { useRouter } from "next/router";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
@@ -23,6 +25,34 @@ const config: DocsThemeConfig = {
   },
   project: {
     link: "https://flakehub.com",
+  },
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "FlakeHub docs • %s",
+      };
+    }
+  },
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:title" content="FlakeHub documentation" />
+      <meta name="description" content="Documentation about FlakeHub" />
+      <meta property="og:description" content="Documentation about FlakeHub" />
+      <meta httpEquiv="Content-Language" content="en" />
+      <meta
+        name="apple-mobile-web-app-title"
+        content="FlakeHub documentation"
+      />
+      <meta
+        property="og:image"
+        content="https://flakehub.com/img/detsys-logo.svg"
+      />
+    </>
+  ),
+  editLink: {
+    text: "Edit this page on GitHub",
   },
   docsRepositoryBase:
     "https://github.com/DeterminateSystems/flakehub-docs/tree/main",
@@ -45,6 +75,7 @@ const config: DocsThemeConfig = {
     Rolling: Rolling,
     SemVer: SemVer,
     UrlStructure: UrlStructure,
+    Z2NButton: Z2NButton,
   },
   footer: {
     text: (
