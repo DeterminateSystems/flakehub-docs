@@ -20,17 +20,10 @@ const config: DocsThemeConfig = {
   },
   project: {
     link: "https://flakehub.com",
+    icon: <DetSysLogo />,
   },
   docsRepositoryBase: "https://github.com/DeterminateSystems/flakehub-docs",
   logoLink: "https://flakehub.com",
-  logo: (
-    <div className="inline-flex items-center gap-2">
-      <span>
-        <DetSysLogo />
-      </span>
-      <span className="font-bold">FlakeHub</span>
-    </div>
-  ),
   components: {
     Admonition: Admonition,
     ExampleUrls: ExampleUrls,
