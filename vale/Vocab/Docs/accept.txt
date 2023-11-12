@@ -8,11 +8,13 @@ hmac
 jwt
 jwts
 lockfile
+kickstart
 neovim
 nixpkgs
 orgs
 pageprops
 plaintext
+powershell
 readme
 repo
 ryantm
@@ -22,3 +24,4 @@ subflakes
 sudo
 toolchains
 wayland
+zsh
