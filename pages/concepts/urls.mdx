@@ -2,7 +2,15 @@
 
 Here's the structure of FlakeHub URLs:
 
-<UrlStructure />
+<UrlFormat root="https://flakehub.com/f" segments={[
+  "slash",
+  { variable: true, name: "org" },
+  "slash",
+  { variable: true, name: "project" },
+  "slash",
+  { variable: true, name: "version-range" },
+  { variable: false, name: ".tar.gz" },
+]} />
 
 <ExampleUrls
   examples={[

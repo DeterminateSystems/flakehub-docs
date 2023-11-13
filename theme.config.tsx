@@ -1,13 +1,9 @@
 import DetSysLogo from "@components/DetSysLogo";
+import ExampleUrls from "@components/ExampleUrls";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
-import {
-  ExampleUrls,
-  LabelUrl,
-  ReleaseUrl,
-  UrlStructure,
-} from "@components/UrlStructure";
+import UrlFormat from "@components/UrlFormat";
 import HoverableButton from "@components/generic/HoverableButton";
 import { useRouter } from "next/router";
 import { Callout, DocsThemeConfig } from "nextra-theme-docs";
@@ -68,11 +64,9 @@ const config: DocsThemeConfig = {
     ExampleUrls: ExampleUrls,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
     HoverableButton: HoverableButton,
-    ReleaseUrl: ReleaseUrl,
-    LabelUrl: LabelUrl,
     Rolling: Rolling,
     SemVer: SemVer,
-    UrlStructure: UrlStructure,
+    UrlFormat: UrlFormat,
   },
   footer: {
     text: (
