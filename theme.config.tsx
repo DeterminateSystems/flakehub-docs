@@ -1,16 +1,12 @@
-import Admonition from "@components/Admonition";
 import DetSysLogo from "@components/DetSysLogo";
-import FlakeHubButton from "@components/FlakeHubButton";
+import ExampleUrls from "@components/ExampleUrls";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
-import {
-  ExampleUrls,
-  LabelUrl,
-  ReleaseUrl,
-  UrlStructure,
-} from "@components/UrlStructure";
-import { DocsThemeConfig } from "nextra-theme-docs";
+import UrlFormat from "@components/UrlFormat";
+import HoverableButton from "@components/generic/HoverableButton";
+import { useRouter } from "next/router";
+import { Callout, DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
   banner: {
@@ -24,6 +20,34 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://flakehub.com",
   },
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "FlakeHub docs • %s",
+      };
+    }
+  },
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:title" content="FlakeHub documentation" />
+      <meta name="description" content="Documentation about FlakeHub" />
+      <meta property="og:description" content="Documentation about FlakeHub" />
+      <meta httpEquiv="Content-Language" content="en" />
+      <meta
+        name="apple-mobile-web-app-title"
+        content="FlakeHub documentation"
+      />
+      <meta
+        property="og:image"
+        content="https://flakehub.com/img/detsys-logo.svg"
+      />
+    </>
+  ),
+  editLink: {
+    text: "Edit this page on GitHub",
+  },
   docsRepositoryBase:
     "https://github.com/DeterminateSystems/flakehub-docs/tree/main",
   logoLink: "https://flakehub.com",
@@ -36,15 +60,13 @@ const config: DocsThemeConfig = {
     </div>
   ),
   components: {
-    Admonition: Admonition,
+    Callout: Callout,
     ExampleUrls: ExampleUrls,
-    FlakeHubButton: FlakeHubButton,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
-    ReleaseUrl: ReleaseUrl,
-    LabelUrl: LabelUrl,
+    HoverableButton: HoverableButton,
     Rolling: Rolling,
     SemVer: SemVer,
-    UrlStructure: UrlStructure,
+    UrlFormat: UrlFormat,
   },
   footer: {
     text: (

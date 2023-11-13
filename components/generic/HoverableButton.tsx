@@ -1,9 +1,17 @@
 import Link from "next/link";
 
-const FlakeHubButton = () => {
+const HoverableButton = ({
+  title,
+  description,
+  link,
+}: {
+  title: string;
+  description: string;
+  link: string;
+}) => {
   return (
     <div className="my-4 md:my-5 lg:my-6">
-      <Link href="https://flakehub.com/new" target="_blank">
+      <Link href={link} target="_blank">
         <div className="rounded-xl border border-gray-200 px-6 py-4 shadow-sm transition-colors duration-200 hover:border-ds-magenta hover:bg-neutral-50 dark:border-gray-700 dark:hover:border-ds-magenta hover:dark:bg-gray-900">
           <div className="flex items-center gap-6">
             <span>
@@ -109,11 +117,9 @@ const FlakeHubButton = () => {
             </span>
 
             <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
-              <span className="font-medium md:text-lg lg:text-xl">
-                Publish to FlakeHub
-              </span>
+              <span className="font-medium md:text-lg lg:text-xl">{title}</span>
               <p className="text-xs font-light text-gray-500 dark:text-gray-400 md:text-sm lg:text-base">
-                A platform for discovering and publishing Nix flakes
+                {description}
               </p>
             </div>
           </div>
@@ -123,4 +129,4 @@ const FlakeHubButton = () => {
   );
 };
 
-export default FlakeHubButton;
+export default HoverableButton;
