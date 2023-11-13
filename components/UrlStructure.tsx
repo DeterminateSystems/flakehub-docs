@@ -79,7 +79,7 @@ const UrlStructure = () => {
 
 const ReleaseUrl = () => {
   return (
-    <div className="not-prose my-4">
+    <div className="not-prose my-4 md:my-5 lg:my-6">
       <div className="overflow-auto rounded-lg border border-gray-400 bg-gray-100 px-5 py-3 dark:border-gray-600 dark:bg-gray-800">
         <p className="font-mono text-sm md:text-base lg:text-lg">
           <span className="text-blue-500 dark:text-blue-400">
@@ -102,7 +102,7 @@ const ReleaseUrl = () => {
 
 const LabelUrl = () => {
   return (
-    <div className="not-prose my-4">
+    <div className="not-prose my-4 md:my-5 lg:my-6">
       <div className="overflow-auto rounded-lg border border-gray-400 bg-gray-100 px-5 py-3 dark:border-gray-600 dark:bg-gray-800">
         <p className="font-mono text-sm md:text-base lg:text-lg">
           <span className="text-blue-500 dark:text-blue-400">

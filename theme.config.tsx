@@ -11,6 +11,7 @@ import {
   UrlStructure,
 } from "@components/UrlStructure";
 import Z2NButton from "@components/Z2NButton";
+import HoverableButton from "@components/generic/HoverableButton";
 import { useRouter } from "next/router";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
@@ -68,14 +69,13 @@ const config: DocsThemeConfig = {
   components: {
     Admonition: Admonition,
     ExampleUrls: ExampleUrls,
-    FlakeHubButton: FlakeHubButton,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
+    HoverableButton: HoverableButton,
     ReleaseUrl: ReleaseUrl,
     LabelUrl: LabelUrl,
     Rolling: Rolling,
     SemVer: SemVer,
     UrlStructure: UrlStructure,
-    Z2NButton: Z2NButton,
   },
   footer: {
     text: (
