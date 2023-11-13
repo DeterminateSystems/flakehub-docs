@@ -1,6 +1,4 @@
-import Admonition from "@components/Admonition";
 import DetSysLogo from "@components/DetSysLogo";
-import FlakeHubButton from "@components/FlakeHubButton";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
@@ -10,10 +8,9 @@ import {
   ReleaseUrl,
   UrlStructure,
 } from "@components/UrlStructure";
-import Z2NButton from "@components/Z2NButton";
 import HoverableButton from "@components/generic/HoverableButton";
 import { useRouter } from "next/router";
-import { DocsThemeConfig } from "nextra-theme-docs";
+import { Callout, DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
   banner: {
@@ -67,7 +64,7 @@ const config: DocsThemeConfig = {
     </div>
   ),
   components: {
-    Admonition: Admonition,
+    Callout: Callout,
     ExampleUrls: ExampleUrls,
     FlakeHubPushConfigTable: FlakeHubPushConfigTable,
     HoverableButton: HoverableButton,

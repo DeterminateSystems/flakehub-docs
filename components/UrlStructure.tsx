@@ -19,38 +19,40 @@ const repoUrl = (org: string, repo: string) => `${orgUrl(org)}/${repo}`;
 
 const ExampleUrls = ({ examples }: { examples: FlakePath[] }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Org</th>
-          <th>Repo</th>
-          <th>Version</th>
-          <th>FlakeHub URL</th>
-        </tr>
-      </thead>
-      <tbody>
-        {examples.map(({ org, repo, version }, idx) => (
-          <tr key={idx}>
-            <td>
-              <a href={orgUrl(org)}>
-                <code>{org}</code>
-              </a>
-            </td>
-            <td>
-              <a href={repoUrl(org, repo)}>
-                <code>{repo}</code>
-              </a>
-            </td>
-            <td>{version && <code>{version}</code>}</td>
-            <td>
-              <Link href={flakeHubUrl({ org, repo, version })}>
-                <code>{flakeHubUrl({ org, repo, version })}</code>
-              </Link>
-            </td>
+    <div className="prose my-4 max-w-none dark:prose-invert md:my-5 lg:my-6">
+      <table>
+        <thead>
+          <tr>
+            <th>Org</th>
+            <th>Repo</th>
+            <th>Version</th>
+            <th>FlakeHub URL</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {examples.map(({ org, repo, version }, idx) => (
+            <tr key={idx}>
+              <td>
+                <a href={orgUrl(org)}>
+                  <code>{org}</code>
+                </a>
+              </td>
+              <td>
+                <a href={repoUrl(org, repo)}>
+                  <code>{repo}</code>
+                </a>
+              </td>
+              <td>{version && <code>{version}</code>}</td>
+              <td>
+                <Link href={flakeHubUrl({ org, repo, version })}>
+                  <code>{flakeHubUrl({ org, repo, version })}</code>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
