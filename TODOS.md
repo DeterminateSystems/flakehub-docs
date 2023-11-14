@@ -1,4 +1,0 @@
-# TODOs
-
-- [ ] Favicon
-- [ ] SEO metadata
