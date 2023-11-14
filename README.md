@@ -28,5 +28,5 @@ pnpm run dev
 
 Then open your browser to http://localhost:3000.
 
-[direnv]: [TODO](https://direnv.net)
+[direnv]: https://direnv.net
 [flakehub]: https://flakehub.com
