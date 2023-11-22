@@ -29,19 +29,22 @@ FlakeHub provides you with several ways to discover [flakes] published to the pl
 
 ### Webhooks
 
-FlakeHub can send [webhooks]
+FlakeHub can emit [**webhooks**][webhooks] when you push [flake releases][releases], enabling you to build integrations on top of FlakeHub.
+You can associate any [public] or [unlisted] flakes to which your account has access with webhooks.
+You also have the option of filtering events by [version specifier][versions].
 
 <HoverableButton title="Publish to FlakeHub" description="A platform for discovering and publishing Nix flakes" link="https://flakehub.com/new" />
 
-[cli]: /docs/cli
 [detsys]: https://determinate.systems
-[flakehub]: /
+[flakehub]: https://flakehub.com
 [flakes]: https://zero-to-nix.com/concepts/flakes
 [list-flakes]: ./features/discovery#list-flakes
 [list-orgs]: ./features/discovery#list-orgs
 [nix]: https://zero-to-nix.com/concepts/nix
+[public]: ./concepts/visibility#public
 [releases]: ./features/discovery#releases
 [search]: ./features/discovery#search
-[semver]: /docs/concepts/semver
+[semver]: ./concepts/semver
+[unlisted]: ./concepts/visibility#unlisted
 [versions]: ./features/discovery#matching-versions
 [webhooks]: ./features/webhooks

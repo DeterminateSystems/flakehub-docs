@@ -29,6 +29,11 @@
           (writeScriptBin "check-sensitivity" ''
             alex --quiet pages
           '')
+
+          (writeScriptBin "checks" ''
+            lint-style
+            check-sensitivity
+          '')
         ];
       in {
         default = pkgs.mkShell {

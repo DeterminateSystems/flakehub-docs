@@ -1,4 +1,5 @@
 {
+  "semver": "Semantic versioning",
   "discovery": "Flake discovery",
   "webhooks": "Webhooks"
 }
