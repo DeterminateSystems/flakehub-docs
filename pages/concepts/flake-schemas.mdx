@@ -3,6 +3,36 @@
 [Flake schemas][schemas] are a way to tell Nix about the structure of your [flake's outputs][outputs].
 If you have outputs that are not part of the default schema definitions (see the [`flake-schemas` README][readme] for the default flake output types), you can make your own schema, which will show up on your flake's FlakeHub page.
 
+To add flake schemas to your flake, first add a flake input for the [`flake-schemas`][schemas-flake] flake using [fh]:
+
+```shell
+fh add DeterminateSystems/flake-schemas
+```
+
+Or manually:
+
+```nix filename="flake.nix"
+{
+  inputs = {
+    flake-schemas = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz";
+
+    # other inputs
+  };
+}
+```
+
+Then add a `schemas` output:
+
+```nix filename="flake.nix"
+{
+  outputs = { flake-schemas, .. }: {
+    inherit (flake-schemas) schemas;
+
+    # other outputs
+  };
+}
+```
+
 ## Custom flake schemas [#custom]
 
 Here is an example flake that defines a schema for its `superSpecialPackage` output:
@@ -45,6 +75,8 @@ Here is an example flake that defines a schema for its `superSpecialPackage` out
 }
 ```
 
+[fh]: ../../cli
 [outputs]: https://zero-to-nix.com/concepts/flakes#outputs
 [readme]: https://github.com/DeterminateSystems/flake-schemas#flake-schemas
 [schemas]: https://determinate.systems/posts/flake-schemas
+[schemas-flake]: https://flakehub.com/flake/DeterminateSystems/flake-schemas
