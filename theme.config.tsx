@@ -52,7 +52,7 @@ const config: DocsThemeConfig = {
     "https://github.com/DeterminateSystems/flakehub-docs/tree/main",
   logoLink: "https://flakehub.com",
   logo: (
-    <div className="inline-flex items-center gap-2">
+    <div className="inline-flex items-center space-x-2">
       <span>
         <DetSysLogo />
       </span>
