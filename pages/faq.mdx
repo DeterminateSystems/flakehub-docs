@@ -11,7 +11,7 @@ We at [Determinate Systems][detsys] recommend using Nix **2.18.1** or newer in c
 You can upgrade Nix using the [`upgrade-nix`][upgrade-nix] command. To upgrade to Nix 2.18.1:
 
 ```shell
-sudo nix upgrade-nix \
+sudo -E env "PATH=$PATH" nix upgrade-nix \
   --nix-store-paths-url https://releases.nixos.org/nix/nix-2.18.1/fallback-paths.nix
 ```
 
