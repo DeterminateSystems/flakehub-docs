@@ -18,7 +18,7 @@ const config: DocsThemeConfig = {
     link: "https://determinate.systems/discord",
   },
   project: {
-    link: "https://flakehub.com",
+    link: "https://github.com/DeterminateSystems/flakehub-docs",
   },
   useNextSeoProps() {
     const { asPath } = useRouter();
