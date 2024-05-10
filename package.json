@@ -11,7 +11,7 @@
     "clsx": "^2.0.0",
     "isomorphic-dompurify": "^1.9.0",
     "marked": "^5.1.2",
-    "next": "^14.0.2",
+    "next": "^14.1.1",
     "nextra": "^2.13.2",
     "nextra-theme-docs": "^2.13.2",
     "react": "^18.2.0",
