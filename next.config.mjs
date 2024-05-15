@@ -1,6 +1,6 @@
 import nextra from "nextra";
 
-const isProd = process.env.NODE_ENV === "production";
+const isPreview = process.env.PREVIEW === "true";
 
 const withNextra = nextra({
   codeHighlight: true,
@@ -10,8 +10,8 @@ const withNextra = nextra({
 });
 
 export default withNextra({
-  assetPrefix: isProd ? "https://flakehub.com/docs" : undefined,
-  basePath: isProd ? "/docs" : undefined,
+  assetPrefix: isPreview ? undefined : "https://flakehub.com/docs",
+  basePath: isPreview ? undefined : "/docs",
   images: {
     unoptimized: true,
   },
