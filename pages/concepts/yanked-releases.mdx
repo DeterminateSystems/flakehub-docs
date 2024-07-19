@@ -1,0 +1,42 @@
+# Yanked releases
+
+On FlakeHub, you can **yank** specific flake [releases].
+Yanked releases are:
+
+* Never considered when resolving a flake [version constraint][semver], *even if that release is the only possible match for the version constraint*.
+* Still available to users who have that version locked in their [`flake.lock`][lockfile] file.
+* Still visible on the website, although the UI clearly indicates that they've been yanked.
+
+You may want to yank a release if, for example, you've published it by mistake or you consider it to have such significant flaws that you want to shield others from using it.
+
+## How to yank flake releases
+
+<Callout>
+You can only yank releases for your own flakes or flakes in orgs for which you're an admin.
+</Callout>
+
+You can yank releases that you own in the FlakeHub UI by clicking on the cog icon on the panel for a specific release:
+
+<YankButton />
+
+Release panels look like this:
+
+![Release panel](/release-panel.png)
+
+You can see the panels on the releases page for a flake.
+Here's the URL structure for releases pages:
+
+<UrlFormat root="https://flakehub.com/flake" segments={[
+  "slash",
+  { variable: true, name: "org" },
+  "slash",
+  { variable: true, name: "project" },
+  "slash",
+  { variable: false, name: "releases" },
+]} />
+
+An example would be https://flakehub.com/flake/tailscale/tailscale/releases.
+
+[lockfile]: https://zero-to-nix.com/concepts/flakes#lockfile
+[releases]: ./versioning
+[semver]: ./semver

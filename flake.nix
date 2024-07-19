@@ -12,37 +12,42 @@
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import nixpkgs { inherit system; };
       });
-    in {
+    in
+    {
       schemas = flake-schemas.schemas;
 
-      devShells = forEachSupportedSystem ({ pkgs }: let
-        scripts = with pkgs; [
-          (writeScriptBin "lint-style" ''
-            vale pages
-          '')
+      devShells = forEachSupportedSystem ({ pkgs }:
+        let
+          scripts = with pkgs; [
+            (writeScriptBin "lint-style" ''
+              vale pages
+            '')
 
-          (writeScriptBin "preview" ''
-            pnpm run build
-            serve ./out
-          '')
+            (writeScriptBin "preview" ''
+              pnpm run build
+              serve ./out
+            '')
 
-          (writeScriptBin "check-sensitivity" ''
-            alex --quiet pages
-          '')
+            (writeScriptBin "check-sensitivity" ''
+              alex --quiet pages
+            '')
 
-          (writeScriptBin "checks" ''
-            lint-style
-            check-sensitivity
-          '')
-        ];
-      in {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            vale
-            nodejs-18_x
-            nixpkgs-fmt
-          ] ++ (with pkgs.nodePackages_latest; [ alex pnpm serve ]) ++ scripts;
-        };
-      });
+            (writeScriptBin "checks" ''
+              lint-style
+              check-sensitivity
+            '')
+          ];
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              vale
+              nodejs_latest
+              nixpkgs-fmt
+            ] ++ (with pkgs.nodePackages_latest; [ alex pnpm serve ]) ++ scripts;
+
+            env.PREVIEW = "true";
+          };
+        });
     };
 }

@@ -1,10 +1,9 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
+  '@heroicons/react':
+    specifier: ^2.1.5
+    version: 2.1.5(react@18.3.1)
   '@tailwindcss/typography':
     specifier: ^0.5.13
     version: 0.5.13(tailwindcss@3.4.3)
@@ -223,6 +222,14 @@ packages:
       client-only: 0.0.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /@heroicons/react@2.1.5(react@18.3.1):
+    resolution: {integrity: sha512-FuzFN+BsHa+7OxbvAERtgBTNeZpUjgM/MIizfVkSCL2/edriN0Hx/DWRCR//aPYwO5QX/YlgLGXk+E3PcfZwjA==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -4220,3 +4227,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
