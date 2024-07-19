@@ -4,6 +4,7 @@ import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
 import UrlFormat from "@components/UrlFormat";
+import YankButton from "@components/YankButton";
 import HoverableButton from "@components/generic/HoverableButton";
 import { useRouter } from "next/router";
 import { Callout, DocsThemeConfig } from "nextra-theme-docs";
@@ -60,13 +61,14 @@ const config: DocsThemeConfig = {
     </div>
   ),
   components: {
-    Callout: Callout,
-    ExampleUrls: ExampleUrls,
-    FlakeHubPushConfigTable: FlakeHubPushConfigTable,
-    HoverableButton: HoverableButton,
-    Rolling: Rolling,
-    SemVer: SemVer,
-    UrlFormat: UrlFormat,
+    Callout,
+    ExampleUrls,
+    FlakeHubPushConfigTable,
+    HoverableButton,
+    Rolling,
+    SemVer,
+    UrlFormat,
+    YankButton,
   },
   footer: {
     text: (
