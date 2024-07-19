@@ -42,7 +42,7 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               vale
-              nodejs-18_x
+              nodejs_latest
               nixpkgs-fmt
             ] ++ (with pkgs.nodePackages_latest; [ alex pnpm serve ]) ++ scripts;
 
