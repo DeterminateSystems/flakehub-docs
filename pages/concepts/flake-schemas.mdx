@@ -25,7 +25,7 @@ Then add a `schemas` output:
 
 ```nix filename="flake.nix"
 {
-  outputs = { flake-schemas, .. }: {
+  outputs = { flake-schemas, ... }: {
     inherit (flake-schemas) schemas;
 
     # other outputs
