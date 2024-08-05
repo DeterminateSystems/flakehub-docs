@@ -1,0 +1,38 @@
+# FlakeHub Cache
+
+*FlakeHub Cache* is a [Nix binary cache][cache] that FlakeHub offers as a service.
+
+FlakeHub Cache is currently in **private beta** but you can sign up for the beta here and we'll add you as soon as we're ready:
+
+<SignupForm />
+
+## Pushing to the cache
+
+FlakeHub Cache differs from existing Nix caching solutions because it forbids pushing to the cache in an ad-hoc way.
+Thus, you can't push to the cache from your laptop or from one of your servers.
+Instead, only *trusted builders* are allowed to push to the cache.
+At the moment, this includes only [GitHub Actions runners][actions] but other options will be available in the future.
+
+In order to push to FlakeHub Cache from GitHub Actions:
+
+1. Your GitHub organization needs to be [registered for the beta](#signup).
+
+```yaml {4-6,9-10} showLineNumbers filename=".github/workflows/nix.yml"
+jobs:
+  build-nix-package:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      # Build default package
+      - run: nix build
+```
+
+With this configuration
+
+[actions]: https://docs.github.com/actions
+[cache]: https://zero-to-nix.com/concepts/caching

@@ -12,6 +12,7 @@ export default {
       colors: {
         dark: "rgb(15, 17, 23)",
         code: "#111b27",
+        "ds-dark": "rgb(15, 17, 23)",
         "ds-gold": "#faa61a",
         "ds-magenta": "#cd1e8b",
         "ds-night-sky": "#211d52",
@@ -21,6 +22,10 @@ export default {
         "ds-rich-blue": "#0d4d9c",
         "ds-sky-blue": "#1e9fd9",
         "ds-violet": "#8b2cbf",
+        "ds-gray": "#666666",
+        "ds-gray-light": "#b3b3b3",
+        "ds-gray-lighter": "#e4e4e7",
+        "ds-gray-lightest": "#f0f0f0",
         // Brands
         "twitter-blue": "#1da1f2",
         "mastodon-purple": "rgb(86, 58, 204)",
