@@ -15,9 +15,11 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }:
         let
+          content = "./pages";
+
           scripts = with pkgs; [
             (writeScriptBin "lint-style" ''
-              vale pages
+              vale ${content}
             '')
 
             (writeScriptBin "preview" ''
@@ -26,7 +28,7 @@
             '')
 
             (writeScriptBin "check-sensitivity" ''
-              alex --quiet pages
+              alex --quiet ${content}
             '')
 
             (writeScriptBin "checks" ''
