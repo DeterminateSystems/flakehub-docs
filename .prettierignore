@@ -1,5 +1,5 @@
 .direnv/
 pnpm-lock.yaml
-*.mdx
+**/*.mdx
 .next/
 .vscode/
