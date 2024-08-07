@@ -1,7 +1,7 @@
 const SignupForm = () => {
   return (
     <div
-      className="not-prose my-4 rounded-lg border-2 border-ds-magenta bg-gray-900 p-4 md:p-5 lg:p-6"
+      className="not-prose my-6 rounded-lg border-2 border-ds-magenta bg-gray-900 p-4 md:p-5 lg:p-6"
       id="signup"
     >
       <div className="space-y-4 md:space-y-6">
@@ -17,6 +17,7 @@ const SignupForm = () => {
           x-ph-capture-event="subscribe-private-beta"
         >
           <input type="hidden" name="FHBETA" value="yes" />
+
           <div className="flex flex-col gap-4 md:flex-row md:gap-0">
             <div className="flex border border-ds-violet">
               <input
@@ -29,7 +30,7 @@ const SignupForm = () => {
             <div className="self-star flex md:border md:border-ds-violet">
               <button
                 type="submit"
-                className="duration-hover hover:text-ds-gray-lightest bg-ds-violet px-4 py-2 text-center font-extrabold transition-colors md:px-5 md:py-3"
+                className="duration-hover bg-ds-violet px-4 py-2 text-center font-extrabold transition-colors hover:text-ds-gray-lightest md:px-5 md:py-3"
               >
                 Register
               </button>

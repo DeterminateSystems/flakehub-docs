@@ -1,10 +1,28 @@
 # FlakeHub Cache
 
-*FlakeHub Cache* is a [Nix binary cache][cache] that FlakeHub offers as a service.
+*FlakeHub Cache* is a [Nix binary cache][cache] that works in conjunction with FlakeHub.
+It has two main features that distinguish it from other Nix caching services:
+
+1. A flexible and convenient [authentication](#authentication) model that doesn't require juggling access keys.
+1. [Access control](#access-control) on a [per-flake][flakes] basis.
 
 FlakeHub Cache is currently in **private beta** but you can sign up for the beta here and we'll add you as soon as we're ready:
 
 <SignupForm />
+
+
+## Authentication model
+
+FlakeHub Cache authentication is based on [JSON Web Tokens][jwt] (JWTs or "jots").
+We currently use [GitHub] as our JWT authentication provider but will be adding support for [GitLab] in the near future.
+Down the road, the flexibility of JWTs will enable us to support a wide range of additional authentication solutions, including [SAML] and [Single sign-on][sso] (SSO) providers.
+
+Existing Nix caching services use static tokens for authentication.
+
+## Access control
+
+Nix caching solutions based on [nix-serve] serve a [Nix store][store] as a single, monolithic cache and make everything in the cache available to anyone with a public key.
+With FlakeHub Cache, on the contrary, you can grant or deny read access to specific users **at the [flake][flakes] level**, which affords substantially more granular access control.
 
 ## Pushing to the cache
 
@@ -13,9 +31,9 @@ Thus, you can't push to the cache from your laptop or from one of your servers.
 Instead, only *trusted builders* are allowed to push to the cache.
 At the moment, this includes only [GitHub Actions runners][actions] but other options will be available in the future.
 
-In order to push to FlakeHub Cache from GitHub Actions:
-
-1. Your GitHub organization needs to be [registered for the beta](#signup).
+In order to push to FlakeHub Cache from GitHub Actions, your GitHub organization needs to be [registered for the beta](#signup).
+Once you've been added&mdash;you'll be notified via email&mdash;you can configure your org's GitHub Actions workflows to use the cache.
+Here's an example:
 
 ```yaml {4-6,9-10} showLineNumbers filename=".github/workflows/nix.yml"
 jobs:
@@ -32,7 +50,53 @@ jobs:
       - run: nix build
 ```
 
-With this configuration
+In this configuration:
+
+* The `permissions` section enables you to authenticate to FlakeHub Cache.
+  No other authentication method, like public keys, is necessary.
+* The [Magic Nix Cache Action][mnca]
+
+<Callout type="info">
+An easy way to push all of your flake outputs to FlakeHub Cache in [GitHub Actions][actions] is to use the [Determinate CI Action][ci]:
+
+```yaml filename=".github/workflows/ci.yml"
+jobs:
+  DeterminateCI:
+    uses: DeterminateSystems/ci/.github/workflows/workflow.yml@main
+    permissions:
+      id-token: "write"
+      contents: "read"
+```
+
+This Action automatically:
+
+* Discovers all Nix derivation outputs&mdash;`packages`, `devShells`, and more&mdash;on all architectures your flake supports using [Flake Schemas][schemas].
+* Builds all derivation outputs on appropriate Actions runners and uses the [Magic Nix Cache][mnca] to push to FlakeHub Cache.
+* Publishes your flake releases to FlakeHub.
+</Callout>
+
+## Pulling from the cache
+
+In order to pull from the cache, you need to be properly authenticated in one of two ways:
+
+1. On GitHub Actions runners, authentication happens automatically.
+1. As an ordinary user on a laptop or workstation, you need to authenticate using [`fh login`][login].
+
+<SignupForm />
 
 [actions]: https://docs.github.com/actions
 [cache]: https://zero-to-nix.com/concepts/caching
+[ci]: https://github.com/DeterminateSystems/ci
+[determinate]: https://github.com/determinateSystems/determinate
+[flakes]: https://zero-to-nix.com/concepts/flakes
+[github]: https://github.com
+[gitlab]: https://gitlab.com
+[jwt]: https://jwt.io
+[login]: https://github.com/determinateSystems/fh?tab=readme-ov-file#log-into-flakehub
+[mnca]: https://github.com/determinateSystems/magic-nix-cache-action
+[nix-serve]: https://nixos.org/manual/nix/stable/package-management/binary-cache-substituter
+[saml]: https://en.wikipedia.org/wiki/SAML_2.0
+[schemas]: https://github.com/DeterminateSystems/flake-schemas
+[sso]: https://en.wikipedia.org/wiki/Single_sign-on
+[store]: https://zero-to-nix.com/concepts/store
+[wizard]: https://flakehub.com/up
