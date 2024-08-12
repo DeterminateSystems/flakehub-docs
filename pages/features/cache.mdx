@@ -1,15 +1,25 @@
 # FlakeHub Cache
 
-*FlakeHub Cache* is a [Nix binary cache][cache] that works in conjunction with FlakeHub.
+*FlakeHub Cache* is a [Nix binary cache][cache] that works in conjunction with [FlakeHub][home].
 It has two main features that distinguish it from other Nix caching services:
 
-1. A flexible and convenient [authentication](#authentication) model that doesn't require juggling access keys.
-1. [Access control](#access-control) on a [per-flake][flakes] basis.
+1. It enables you to [control access](#access-control) at the [flake][flakes] level.
+1. It uses a flexible and convenient [authentication](#authentication) model that doesn't require juggling access keys.
 
 FlakeHub Cache is currently in **private beta** but you can sign up for the beta here and we'll add you as soon as we're ready:
 
 <SignupForm />
 
+## Access control
+
+Nix caching solutions based on [nix-serve] serve an entire [Nix store][store] as a single monolithic cache and make all store paths in that cache available to anyone with a public key.
+With FlakeHub Cache, on the contrary, you can grant or deny read access to specific users **at the [flake][flakes] level**, which affords substantially more granular access control.
+
+Let's say that you're an admin for the org `omnicorp`.
+You could manage access to your org's flakes in such a way that, for example:
+
+* Only some trusted users would be allowed to pull store paths associated with the flake `super-duper-secure`.
+* Anyone in your org can pull store paths associated with the `dev-environments` flake.
 
 ## Authentication model
 
@@ -17,12 +27,8 @@ FlakeHub Cache authentication is based on [JSON Web Tokens][jwt] (JWTs or "jots"
 We currently use [GitHub] as our JWT authentication provider but will be adding support for [GitLab] in the near future.
 Down the road, the flexibility of JWTs will enable us to support a wide range of additional authentication solutions, including [SAML] and [Single sign-on][sso] (SSO) providers.
 
-Existing Nix caching services use static tokens for authentication.
-
-## Access control
-
-Nix caching solutions based on [nix-serve] serve a [Nix store][store] as a single, monolithic cache and make everything in the cache available to anyone with a public key.
-With FlakeHub Cache, on the contrary, you can grant or deny read access to specific users **at the [flake][flakes] level**, which affords substantially more granular access control.
+In contrast, existing Nix caching services use static tokens for authentication.
+This model places all of the operational burden of authentication on users; with FlakeHub Cache, however, we've opted to shift that burden to trusted authentication providers.
 
 ## Pushing to the cache
 
@@ -80,7 +86,7 @@ This Action automatically:
 In order to pull from the cache, you need to be properly authenticated in one of two ways:
 
 1. On GitHub Actions runners, authentication happens automatically.
-1. As an ordinary user on a laptop or workstation, you need to authenticate using [`fh login`][login].
+1. As an ordinary user on a laptop or workstation, you need to authenticate using [`fh login`][fh-login].
 
 <SignupForm />
 
@@ -88,11 +94,13 @@ In order to pull from the cache, you need to be properly authenticated in one of
 [cache]: https://zero-to-nix.com/concepts/caching
 [ci]: https://github.com/DeterminateSystems/ci
 [determinate]: https://github.com/determinateSystems/determinate
+[fh-login]: https://github.com/determinateSystems/fh?tab=readme-ov-file#log-into-flakehub
 [flakes]: https://zero-to-nix.com/concepts/flakes
 [github]: https://github.com
 [gitlab]: https://gitlab.com
+[home]: /
 [jwt]: https://jwt.io
-[login]: https://github.com/determinateSystems/fh?tab=readme-ov-file#log-into-flakehub
+[login]: /login
 [mnca]: https://github.com/determinateSystems/magic-nix-cache-action
 [nix-serve]: https://nixos.org/manual/nix/stable/package-management/binary-cache-substituter
 [saml]: https://en.wikipedia.org/wiki/SAML_2.0
