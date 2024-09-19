@@ -3,6 +3,7 @@ import ExampleUrls from "@components/ExampleUrls";
 import { FlakeHubPushConfigTable } from "@components/FlakeHubPushConfigTable";
 import Rolling from "@components/Rolling";
 import { SemVer } from "@components/SemVer";
+import SignupForm from "@components/SignupForm";
 import UrlFormat from "@components/UrlFormat";
 import YankButton from "@components/YankButton";
 import HoverableButton from "@components/generic/HoverableButton";
@@ -67,6 +68,7 @@ const config: DocsThemeConfig = {
     HoverableButton,
     Rolling,
     SemVer,
+    SignupForm,
     UrlFormat,
     YankButton,
   },
